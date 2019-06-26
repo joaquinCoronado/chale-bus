@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import { StyleSheet, Text, View } from "react-native";
 
-export default class Login extends Component {
+export default class Register extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>Login Screen</Text>
+        <Text>Register</Text>
       </View>
     );
   }
