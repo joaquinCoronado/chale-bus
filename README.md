@@ -1,5 +1,5 @@
 # Chale Bus 🚌
-Hackathon de movilidad
+Hackathon
 
 ## Principal features
 * Search routes
@@ -13,5 +13,4 @@ Hackathon de movilidad
 framework used
 * Love ♥️
 ### Dependencies
-* [react-native-router-flux](https://maven.apache.org/) - Dependency Management
-
+* [react-native-router-flux](https://maven.apache.org/) - Router Management
