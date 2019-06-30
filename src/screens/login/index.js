@@ -57,8 +57,10 @@ export default class Login extends Component {
         <View style={styles.buttonsContainer}>
           <Button
             onPress={() => {
-              Alert.alert("Afuevo", `email: ${email}, pass: ${password}`);
+              //Alert.alert("Afuevo", `email: ${email}, pass: ${password}`);
               this.setState({ email: "", password: "" });
+
+              Actions.home()
             }}
             title="Entrar"
             type="outline"

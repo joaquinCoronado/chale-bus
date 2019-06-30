@@ -1,0 +1,4 @@
+{
+    "jsonServer":"http://localhost:3000/",
+    "prodServer":"http://localhost:3000/"
+}

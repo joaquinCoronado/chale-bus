@@ -71,15 +71,16 @@ export default class Login extends Component {
         <View style={styles.buttonsContainer}>
           <Button
             onPress={() => {
-              Alert.alert(
-                "Afuevo",
-                `email: ${email}, pass: ${password}, name: ${name}`
-              );
+              // Alert.alert(
+              //   "Afuevo",
+              //   `email: ${email}, pass: ${password}, name: ${name}`
+              // );
               this.setState({ email: "", password: "", name: "" });
               ChalesApi.createAcount(email, password, name)
                 .then(json => {
                   //Alert.alert("response", json);
                   saveToken(json.id);
+                  Actions.home();
                 })
                 .catch(err => {
                   Alert.alert("error", err);

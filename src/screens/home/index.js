@@ -1,40 +1,67 @@
 import React, { Component } from "react";
-import { StyleSheet, Text, View, SafeAreaView, Dimensions } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  SafeAreaView,
+  Dimensions,
+  AsyncStorage,
+  TouchableOpacity,
+  Alert
+} from "react-native";
 import { Actions } from "react-native-router-flux";
-import { Button } from "react-native-elements";
+import { Avatar, Button } from "react-native-elements";
 
-var { width } = Dimensions.get("window");
+var { height, width } = Dimensions.get("window");
+
+getToken = async () => {
+  try {
+    const token = await AsyncStorage.getItem("token");
+    if (token !== null) {
+      //Alert.alert("token", token);
+    }
+  } catch (error) {
+    console.warn(error);
+  }
+};
+
+onPresProfileImage = () => {
+  // Alert.alert("perfil", "esta mierda te va a llevar al perfil de usuario");
+  Actions.profile()
+};
 
 export default class Home extends Component {
   render() {
+    getToken();
+
     return (
       <SafeAreaView style={styles.container}>
-        {/* LOGO */}
-        <View style={styles.logoContainter}>
-          <View style={styles.circle}>
-            <Text style={styles.title}>Chale Bus</Text>
-          </View>
+        {/* HEADER */}
+        <View style={styles.headerContainer}>
+          <TouchableOpacity
+            style={styles.imageName}
+            onPress={onPresProfileImage}
+          >
+            <Avatar
+              size="medium"
+              rounded
+              source={{
+                uri:
+                  "https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg"
+              }}
+            />
+            <Text>Joaquín Coronado Ramírez</Text>
+          </TouchableOpacity>
         </View>
 
-        {/* BUTTONS */}
-        <View style={styles.buttonsContainer}>
-          <Button
-            onPress={() => {
-              Actions.login();
-            }}
-            title="Ya tengo cuenta"
-            type="outline"
-            style={styles.button}
-          />
+        {/* BODY */}
+        <View style={styles.bodyContainer}>
+          <Text>Home</Text>
+        </View>
 
-          <Button
-            onPress={() => {
-              Actions.register();
-            }}
-            title="Registrarme"
-            color="#841584"
-            style={styles.button}
-          />
+        {/* PANIC BOTTON */}
+        <View style={styles.panicBottonContainer}>
+          <Button title="ME ESTAN ASALTANDO ALV!!!" buttonStyle={styles.button}/>
         </View>
       </SafeAreaView>
     );
@@ -49,36 +76,40 @@ const styles = StyleSheet.create({
     backgroundColor: "white"
   },
 
-  logoContainter: {
+  headerContainer: {
+    flex: 0.8,
+    width: width,
+    height: (height / 10) * 2,
+    // backgroundColor: "red",
+    justifyContent: "center",
+    alignItems: "flex-start",
+    paddingLeft: 15
+  },
+  imageName: {
+    flexDirection: "row",
+    justifyContent: "space-around",
+    alignItems: "center"
+  },
+
+  bodyContainer: {
     flex: 8,
-
-    width: "100%",
+    width: width,
+    height: (height / 10) * 6,
+    backgroundColor: "lightgrey",
     justifyContent: "center",
     alignItems: "center"
   },
 
-  buttonsContainer: {
-    flex: 2,
-    justifyContent: "flex-start",
-    width: "100%",
-    paddingRight: 25,
-    paddingLeft: 25
+  panicBottonContainer: {
+    flex: .8,
+    width: width,
+    height: (height / 10) * 2,
+    justifyContent: "center",
+    alignItems: "center"
   },
+
   button: {
-    marginBottom: 10,
+    backgroundColor: "red",
     width: "100%"
-  },
-  title: {
-    fontSize: 38,
-    color: "#fff"
-  },
-  circle: {
-    width: 500,
-    backgroundColor: "#4288d1",
-    width: width / 2,
-    height: width / 2,
-    borderRadius: width / 2 / 2,
-    justifyContent: "center",
-    alignItems: "center"
   }
 });
