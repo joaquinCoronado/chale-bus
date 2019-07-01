@@ -1,4 +1,5 @@
-import { API_CONSTANTS } from "../constants/api.json";
+import { jsonServer, prodServer } from "../constants/api.json";
+
 
 class ChalesApi {
   static createAcount(email, pass, name) {
@@ -7,8 +8,8 @@ class ChalesApi {
       email: email,
       password: pass
     };
-
-    return fetch(`${API_CONSTANTS.jsonServer}users`, {
+    console.log(`${jsonServer}users`)
+    return fetch(`${jsonServer}users`, {
       method: "POST",
       headers: {
         Accept: "application/json",
